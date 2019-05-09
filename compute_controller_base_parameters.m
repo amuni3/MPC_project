@@ -77,8 +77,8 @@ function param = compute_controller_base_parameters
     % x(k+1) = A * x(k) + B * u(k) + Bd
        
     % (3) set point computation
-%     T_sp = subs(vpa([sol1.t_ss1; sol1.t_ss2; sol1.t_ss3],5));
-%     p_sp = subs([vpa(sol1.u_ss1, 5); vpa(sol1.u_ss2, 5)]);
+    % T_sp = subs(vpa([sol1.t_ss1; sol1.t_ss2; sol1.t_ss3],5));
+    % p_sp = subs([vpa(sol1.u_ss1, 5); vpa(sol1.u_ss2, 5)]);
     
     %% (4) system constraints
     % Note: Discrepancy b/w state constraints in description & struct

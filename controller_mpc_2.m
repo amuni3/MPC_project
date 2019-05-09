@@ -37,7 +37,7 @@ function [param, yalmip_optimizer] = init()
 param = compute_controller_base_parameters; % get basic controller parameters
 
 %% implement your MPC using Yalmip here, e.g.
-N = 30;
+N = 30; %60 - satisfied
 nx = size(param.A,1); %3
 nu = size(param.B,2); %2
 

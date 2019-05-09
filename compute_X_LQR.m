@@ -8,15 +8,30 @@ function [A_x, b_x] = compute_X_LQR
     param = compute_controller_base_parameters;
     Ucons = param.Ucons;
     Xcons = param.Xcons;
+
+    %% Compute the invariant set
+    % computes a control invariant set using LQR controller
+    [~,~,G] = dare(param.A,param.B,param.Q,param.R);
+    K = - G;
+    systemLQR = LTISystem('A', param.A + param.B * K);
     % MPC Lec 5 slide 43
-    Ax_x = [eye(3); -1 * eye(3)];
-    Bx_x = [Xcons(:,2); -1 * Xcons(:,1)];
-    Ax_u = [eye(2); -1 * eye(2)];
-    Bx_u = [Ucons(:,2); -1 * Ucons(:,1)];
-    %% Here you need to implement the X_LQR computation and assign the result.
-    m = [Ax_x, zeros(6,2)];
-    n = [zeros(4,3), Ax_u];
-    A_x = [m; n];
-    b_x = [Bx_x; Bx_u];
+    A_x = [eye(3); -eye(3); K; -K];
+    b_x = [Xcons(:,2);-1 * Xcons(:,1); ...
+           Ucons(:,2);-1 * Ucons(:,1)];
+    Xp = Polyhedron('A', A_x, 'b', b_x);                      
+    systemLQR.x.with('setConstraint');
+    systemLQR.x.setConstraint = Xp;    
+    InvSetLQR = systemLQR.invariantSet()  
+    % InvSetLQR.plot(), alpha(0.25)
+    
+    %% Calculate Invariant set --> Commputationally heavy
+    % system = LTISystem('A', param.A, 'B', param.B);
+    % system.x.min = Xcons(:,1);
+    % system.x.max = Xcons(:,2);
+    % system.u.min = Ucons(:,1);
+    % system.u.max = Ucons(:,2);
+    % InvSet = system.invariantSet();
+    % plot(InvSet), alpha(0.25), ...
+    % title('Control Invariant Set for Truck')    
 end
 

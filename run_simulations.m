@@ -11,5 +11,20 @@ clear controller_lqr;
 param = compute_controller_base_parameters;
 T0_1 = param.T_sp + [3; 1; 0];
 T0_2 = param.T_sp + [-1; -0.1; -4.5];
-[T, p] = simulate_truck(T0_1, @controller_lqr,scen1);
+
+%% Question 5
+%[T, p] = simulate_truck(T0_1, @controller_lqr,scen1);
+
+%% Question 9
+%[T, p] = simulate_truck(T0_1, @controller_mpc_1,scen1);
+% [T, p] = simulate_truck(T0_2, @controller_mpc_1,scen1);
+
+%% Question 12
 %[T, p] = simulate_truck(T0_1, @controller_mpc_2,scen1);
+
+%% Question 17
+% [T, p] = simulate_truck(T0_1, @controller_mpc_3,scen1);
+[T, p] = simulate_truck(T0_2, @controller_mpc_3,scen1);
+
+
+
