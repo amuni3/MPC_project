@@ -47,7 +47,7 @@ umin = param.Ucons(:,1);
 umax = param.Ucons(:,2);
 
 S = eye(nx); 
-v=50000;
+v=60000;
 objective = 0;
 constraints = [];
 for k = 1:N-1
