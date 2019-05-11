@@ -24,7 +24,15 @@ T0_2 = param.T_sp + [-1; -0.1; -4.5];
 
 %% Question 17
 % [T, p] = simulate_truck(T0_1, @controller_mpc_3,scen1);
-[T, p] = simulate_truck(T0_2, @controller_mpc_3,scen1);
+% [T, p] = simulate_truck(T0_2, @controller_mpc_3,scen1);
 
 
-
+%% Question 
+global x_hat
+[T, p] = simulate_truck(T0_1, @controller_mpc_5, scen3);
+figure(2);
+hold on;
+plot(x_hat(4,:));
+plot(x_hat(5,:));
+plot(x_hat(6,:));
+legend 'd_1' 'd_2' 'd_3';

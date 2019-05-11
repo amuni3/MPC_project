@@ -106,6 +106,9 @@ function param = compute_controller_base_parameters
     param.Xcons = Xcons;
     param.Tcons = Tcons;
     param.Pcons = Pcons;
-    param.Bd = Ts * Bcd;
+    param.r = r;
+    param.H = H;
+    param.Bd = Bd;
+    param.dc = Bd;
 end
 
