@@ -24,19 +24,19 @@ T0_2 = param.T_sp + [-1; -0.1; -4.5];
 %[T, p] = simulate_truck(T0_1, @controller_mpc_2,scen1);
 
 %% Question 18
-[T, p] = simulate_truck(T0_2, @controller_mpc_4,scen2);
+%[T, p] = simulate_truck(T0_2, @controller_mpc_4,scen2);
 
 %% Question 19
 %[T, p] = simulate_truck(T0_2, @controller_mpc_3,scen1);
-%[T, p] = simulate_truck(T0_2, @controller_mpc_4,scen1);
+[T, p] = simulate_truck(T0_2, @controller_mpc_4,scen1);
 %%
 
 lines=findobj(gcf,'Type','Line');
 for i=1:numel(lines)
-    lines(i).LineWidth=1.5;
+    lines(i).LineWidth=2.5;
 end    
 
-print('Q18_Simulation1','-dpdf','-fillpage')
+print('Q19_SimulationMPC4','-dpdf','-fillpage')
 
 
 
