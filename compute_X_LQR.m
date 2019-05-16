@@ -21,8 +21,19 @@ function [A_x, b_x] = compute_X_LQR
     Xp = Polyhedron('A', A_x, 'b', b_x);                      
     systemLQR.x.with('setConstraint');
     systemLQR.x.setConstraint = Xp;    
-    InvSetLQR = systemLQR.invariantSet()  
-    % InvSetLQR.plot(), alpha(0.25)
+    InvSetLQR = systemLQR.invariantSet();
+%     subplot(2,2,1)
+%     InvSetLQR.plot(), alpha(0.25)
+%     subplot(2,2,2)
+%     InvSetLQR.plot(), alpha(0.25)
+%     view(0,90)  % XY
+%     subplot(2,2,3)
+%     InvSetLQR.plot(), alpha(0.25)
+%     view(0,0)   % XZ
+%     subplot(2,2,4)
+%     InvSetLQR.plot(), alpha(0.25)
+%     view(90,0)  % YZ
+%     print('Q8 Invariant Set with LQR controller','-dpdf','-fillpage')
     
     %% Calculate Invariant set --> Commputationally heavy
     % system = LTISystem('A', param.A, 'B', param.B);

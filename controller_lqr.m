@@ -20,6 +20,7 @@ end
 %        param.B' * P_inf * param.A
 
 if ((param.counter == 30) && (norm(param.T_sp - T) < 0.2*norm(param.xo)))
+    disp('T(30):')
     disp(T);
     disp('Norm conditions satisfied!!')
 end
@@ -32,7 +33,10 @@ p = (param.F * T_in) + param.p_sp;
 % Infinite horizon cost - is a Lyapunov function for the system
 % J_inf  = x'*P_inf*x
 if (param.counter == 1)
+    disp('P_inf:');
+    disp(param.P);
     J_inf = (T - param.T_sp)' * param.P * (T - param.T_sp);
+    disp('J_inf:');
     disp(J_inf);
 end
 param.counter = param.counter + 1;

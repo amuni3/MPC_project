@@ -27,12 +27,12 @@ function p = controller_mpc_1(T)
     end
     % Implement only the first input from the MPC input sequence
     p = u_mpc{1} + param.p_sp;
-    counter = 1;
-    if counter < 2
+    
+    if param.counter < 2
         disp('MPC1: ');
         disp(u_mpc{2});        
     end
-    counter = counter + 1;
+    param.counter = param.counter + 1;
 end
 
 function [param, yalmip_optimizer] = init()
@@ -40,7 +40,7 @@ function [param, yalmip_optimizer] = init()
 % Yalmip optimizer object
 
 param = compute_controller_base_parameters; % get basic controller parameters
-
+param.counter = 1;
 %% implement your MPC using Yalmip here, e.g.
 N = 30;
 nx = size(param.A,1); %3

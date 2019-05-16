@@ -26,8 +26,11 @@ end
     end
     % Implement only the first input from the MPC input sequence
     p = u_mpc{1} + param.p_sp;
-    disp('MPC2: ');
-    disp(u_mpc{2});
+    if param.counter < 2
+        disp('MPC2: ');
+        disp(u_mpc{2});
+    end
+    param.counter = param.counter + 1;
 end
 
 function [param, yalmip_optimizer] = init()
@@ -35,7 +38,7 @@ function [param, yalmip_optimizer] = init()
 % Yalmip optimizer object
 
 param = compute_controller_base_parameters; % get basic controller parameters
-
+param.counter = 1;
 %% implement your MPC using Yalmip here, e.g.
 N = 30; %60 - satisfied
 nx = size(param.A,1); %3
@@ -68,7 +71,7 @@ end
 constraints = [constraints, X{:,N} == 0];
 % Terminal Input Constraint
 [P,~,~] = dare(param.A, param.B, param.Q, param.R);
-objective = objective + X{:, N}' * P * X{:, N}; 
+% objective = objective + X{:, N}' * P * X{:, N}; 
 
 parameters_in = X{1,1}; % Input to the system is x(k) which is Xo (constraint)
 solutions_out = {U{1,1}, objective}; % Only care about the first input in input sequence

@@ -21,9 +21,7 @@ end
         warning('MPC infeasible');
     end
     % Implement only the first input from the MPC input sequence
-    p = u_mpc{1} + param.p_sp;
-    disp('MPC3: ');
-    disp(u_mpc{2});
+    p = u_mpc{1} + param.p_sp;    
 end
 
 function [param, yalmip_optimizer] = init()

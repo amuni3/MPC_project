@@ -95,7 +95,6 @@ solutions_out = {U{1,1}, objective}; % Only care about the first input in input 
 ops = sdpsettings('verbose',0,'solver','quadprog');
 yalmip_optimizer = optimizer(constraints, objective, ops, parameters_in, solutions_out);
 
-
 A_aug = [param.A,    eye(3,3);
          zeros(3,3), eye(3,3)];
 B_aug = [param.B; zeros(3,2)];

@@ -100,15 +100,14 @@ function param = compute_controller_base_parameters
     param.B = B;
     param.Q = Q;
     param.R = R;
+    param.r = r;
+    param.H = H;
+    param.Bd = Bd;       
     param.T_sp = T_sp;
     param.p_sp = p_sp;
     param.Ucons = Ucons;
     param.Xcons = Xcons;
     param.Tcons = Tcons;
     param.Pcons = Pcons;
-    param.r = r;
-    param.H = H;
-    param.Bd = Bd;
-    param.dc = Bd;
 end
 

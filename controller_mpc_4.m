@@ -21,9 +21,7 @@ end
         warning('MPC infeasible');
     end
     % Implement only the first input from the MPC input sequence
-    p = u_mpc{1} + param.p_sp;
-    disp('MPC3: ');
-    disp(u_mpc{2});
+    p = u_mpc{1} + param.p_sp;    
 end
 
 function [param, yalmip_optimizer] = init()
@@ -53,9 +51,11 @@ constraints = [];
 for k = 1:N-1
   constraints = [constraints, ...
                  X{:,k+1} == param.A * X{:,k} + param.B * U{:,k},...
-                 xmin-E{:,k} <= X{:,k+1} <= xmax+E{:,k}, umin <= U{:,k} <= umax, E{:,k}>=zeros(3,1)];                
+                 xmin-E{:,k} <= X{:,k+1} <= xmax+E{:,k}, ...
+                 umin <= U{:,k} <= umax, E{:,k}>=zeros(3,1)];                
   objective = objective + ...
-              X{:,k}' * param.Q * X{:,k} + U{:,k}' * param.R * U{:,k} + E{:,k}'*S* E{:,k}+v*norm(E{:,k},1);
+              X{:,k}' * param.Q * X{:,k} + U{:,k}' *...
+              param.R * U{:,k} + E{:,k}'*S* E{:,k}+v*norm(E{:,k},1);
 end
 
 % Terminal Set State Constraint
